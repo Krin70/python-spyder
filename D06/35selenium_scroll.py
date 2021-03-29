@@ -23,7 +23,7 @@ while True:
     for name, price in zip(names, prices):
         print(name.xpath("string(.)"), ":", price)
 
-    if e.xpath('//a[@class="pn-next"]') != None:
+    if e.xpath('//a[@class="pn-next"]') is not None:
         chrome.find_element_by_xpath('//*[@id="J_bottomPage"]/span[1]/a[9]').click()
     else:
         break
