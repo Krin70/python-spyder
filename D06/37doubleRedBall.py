@@ -4,10 +4,12 @@ from lxml import etree
 import pymysql
 
 url = "http://datachart.500.com/ssq/"
+#
 response = requests.get(url, headers={"User-Agent": UserAgent().random})
 e = etree.HTML(response.text)
 data_times = e.xpath('//tbody[@id="tdata"]/tr/td[1]/text()')
 trs = e.xpath('//tbody[@id="tdata"]/tr[not(@class)]')
+# 连接数据库
 client = pymysql.connect(host="master", port=3306, user='root', password='123456', charset='utf8', db='spyder')
 cursor = client.cursor()
 sql = 'insert into t_ball values(0,%s,%s,%s)'
